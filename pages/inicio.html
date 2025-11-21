@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Inicio - Full Motos Bolivia</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/styleTienda.css">
+</head>
+<body>
+  <!-- Menú lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../imagenes/logo.png" alt="Full Motos Bolivia">
+        </div>
+
+        <nav>
+                      <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="configuracion.html">Configuración</a></li>
+                <li><a href="producto.html">Producto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>  </nav>
+    </aside>
+
+  <main class="main-content">
+    <header class="hero">
+      <img src="../imagenes/hero.jpg" alt="Full Motos Hero" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;">
+      <h1>Full Motos Bolivia</h1>
+      <p>Repuestos, accesorios y equipamiento para motociclistas — El Alto, La Paz</p>
+    </header>
+
+    <section>
+      <h2>Productos destacados</h2>
+      <div id="productosDestacados" class="productos-grid"></div>
+    </section>
+
+    <section class="carrito">
+      <h2>Carrito</h2>
+      <ul id="listaCarrito"></ul>
+      <p>Total: Bs <span id="totalCarrito">0</span></p>
+      <a href="finalizar.html" class="btn">Finalizar compra</a>
+    </section>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/cart.js"></script>
+  <script>
+    const catalogo = leerLS("catalogo") || [];
+
+    function mostrarDestacados(){
+      const cont = document.getElementById("productosDestacados");
+      cont.innerHTML = "";
+      const destacados = catalogo.slice(0, 6);
+      destacados.forEach(p => {
+        cont.innerHTML += `
+          <div class="producto">
+            <img src="${p.imagen}" alt="${p.nombre}">
+            <h3>${p.nombre}</h3>
+            <p>Bs ${p.precio}</p>
+            <div style="display:flex;gap:8px;justify-content:center">
+              <button class="btn" onclick="agregarAlCarrito(${p.id})">🛒 Agregar</button>
+              <a class="btn" href="producto.html?id=${p.id}">Ver</a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+      mostrarDestacados();
+      window.actualizarCarrito && window.actualizarCarrito();
+    });
+  </script>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>

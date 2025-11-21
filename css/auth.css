@@ -1,0 +1,4 @@
+/* auth.css - login/registro */
+input[type="email"],input[type="password"],input[type="text"],textarea{
+  width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;margin-bottom:10px
+}

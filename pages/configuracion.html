@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Configuración</title><link rel="stylesheet" href="../css/base.css"></head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../imagenes/logo.png" alt="Full Motos Bolivia">
+        </div>
+
+        <nav>
+                      <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="configuracion.html">Configuración</a></li>
+                <li><a href="producto.html">Producto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>  </nav>
+    </aside>
+  <main class="main-content">
+    <h1>Configuración</h1>
+    <div class="form-card">
+      <form id="formConfig">
+        <div class="input-group"><label>Nueva contraseña</label><input id="nuevoPass" type="password"></div>
+        <div class="input-group"><label>Confirmar</label><input id="confirmPass" type="password"></div>
+        <button class="btn" type="submit">Actualizar</button>
+      </form>
+      <div id="mensajeConfig" class="mensaje"></div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("formConfig").addEventListener("submit", e=>{
+      e.preventDefault();
+      const p = document.getElementById("nuevoPass").value.trim();
+      const c = document.getElementById("confirmPass").value.trim();
+      const msg = document.getElementById("mensajeConfig");
+      if(p.length < 6){ msg.textContent = "Mínimo 6 caracteres"; msg.style.color="red"; return; }
+      if(p !== c){ msg.textContent = "No coinciden"; msg.style.color="red"; return; }
+      let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+      let user = JSON.parse(localStorage.getItem("usuarioActivo")) || null;
+      if(!user){ msg.textContent = "No hay usuario activo"; msg.style.color="red"; return; }
+      const idx = usuarios.findIndex(u=>u.correo===user.correo);
+      if(idx>=0){ usuarios[idx].password = p; localStorage.setItem("usuarios", JSON.stringify(usuarios)); localStorage.setItem("usuarioActivo", JSON.stringify(usuarios[idx])); msg.textContent="Contraseña actualizada."; msg.style.color="green"; }
+    });
+  </script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

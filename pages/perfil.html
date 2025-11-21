@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Full Motos Bolivia</title>
+
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/profile.css">
+
+    <style>
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 230px;
+            background: #111;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-logo img {
+            width: 150px;
+            margin: 0 auto 25px auto;
+            display: block;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 8px 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 10px 18px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #ff3b3b;
+        }
+
+        /* --- CONTENIDO GENERAL --- */
+        .contenido {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        h1, h2 {
+            color: #111;
+        }
+
+        /* --- TARJETAS GENERALES --- */
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
+        }
+
+        /* --- TARJETA PERFIL --- */
+        .perfil-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .perfil-datos p {
+            margin: 5px 0;
+        }
+
+        /* --- LISTA DE PEDIDOS --- */
+        .pedido-item {
+            background: #f3f3f3;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 5px solid #ff3b3b;
+        }
+
+        /* --- INFO EXTRA --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
+            .sidebar { width: 180px; }
+            .contenido { margin-left: 190px; }
+        }
+
+        @media(max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .contenido {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+
+            .sidebar-logo img {
+                width: 100px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../imagenes/logo.png" alt="Full Motos Bolivia">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="configuracion.html">Configuración</a></li>
+                <li><a href="producto.html">Producto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+
+        <h1>Mi Perfil</h1>
+
+        <!-- PERFIL -->
+        <div class="card perfil-card">
+            <h2 id="perfilNombre">Usuario</h2>
+
+            <div class="perfil-datos">
+                <p><strong>Email:</strong> <span id="perfilCorreo"></span></p>
+                <p><strong>Teléfono:</strong> <span id="perfilTelefono">No registrado</span></p>
+                <p><strong>Miembro desde:</strong> <span id="perfilFecha">—</span></p>
+            </div>
+        </div>
+
+        <!-- INFO EXTRA -->
+        <div class="info-grid">
+
+            <div class="card">
+                <h3>Dirección de Envío</h3>
+                <p><strong>Ciudad:</strong> <span id="perfilCiudad">El Alto</span></p>
+                <p><strong>Zona:</strong> <span id="perfilZona">No asignada</span></p>
+                <p><strong>Dirección:</strong> <span id="perfilDireccion">—</span></p>
+            </div>
+
+            <div class="card">
+                <h3>Métodos de Pago</h3>
+                <p><strong>Preferido:</strong> <span id="perfilPago">Efectivo / Contra entrega</span></p>
+                <p><strong>Alternativos:</strong></p>
+                <ul>
+                    <li>QR Simple</li>
+                    <li>Tigo Money</li>
+                    <li>Transferencia bancaria</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Estado de Cuenta</h3>
+                <p><strong>Puntos acumulados:</strong> <span id="perfilPuntos">0</span></p>
+                <p><strong>Nivel:</strong> <span id="perfilNivel">Cliente nuevo</span></p>
+                <p><strong>Última compra:</strong> <span id="perfilUltimaCompra">—</span></p>
+            </div>
+
+        </div>
+
+        <!-- PEDIDOS -->
+        <h2>Mis pedidos</h2>
+        <div id="listaPedidos" class="card pedidos-lista"></div>
+
+    </main>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/compras.js"></script>
+    <script src="../js/auth.js"></script>
+
+</body>
+</html>

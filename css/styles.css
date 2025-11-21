@@ -1,0 +1,88 @@
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --accent:#0b7cff;
+  --muted:#6b7280;
+  --glass: rgba(255,255,255,0.6);
+  --success:#1f8a4f;
+  --danger:#c23d3d;
+  --sidebar-width:260px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:linear-gradient(180deg,#eef3fb 0%,var(--bg) 100%);
+  color:#111827;
+  min-height:100vh;
+}
+
+/* AUTH SCREEN */
+.auth-screen{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg, rgba(2,6,23,0.4), rgba(2,6,23,0.2));
+  z-index:60;
+  padding:24px;
+}
+.auth-card{
+  width:100%;max-width:420px;background:var(--card);padding:22px;border-radius:12px;
+  box-shadow:0 8px 30px rgba(2,6,23,0.12);
+  transition:transform .25s ease;
+}
+.auth-card h1{margin:0 0 12px;font-size:20px}
+.form label{display:block;margin:8px 0;font-size:13px;color:var(--muted)}
+.form input,.form textarea{
+  width:100%;padding:10px;border:1px solid #e6e9ef;border-radius:8px;margin-top:6px;
+  font-size:14px;background:transparent;
+}
+.form textarea{min-height:80px;resize:vertical}
+.row-between{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.btn{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer}
+.link{color:var(--accent);text-decoration:underline;cursor:pointer;font-size:13px}
+.msg{margin:8px 0 0;font-size:13px;color:var(--danger);min-height:18px}
+
+/* APP LAYOUT */
+.app{display:flex;min-height:100vh;overflow:hidden}
+.sidebar{
+  width:var(--sidebar-width);background:linear-gradient(180deg,#0b3f66,#06314f);color:#fff;padding:18px;flex-shrink:0;
+  position:fixed;left:0;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .25s ease, width .25s ease; z-index:40;
+}
+.brand h2{margin:0;font-size:20px}
+.brand small{color:rgba(255,255,255,0.8)}
+.sidebar nav ul{list-style:none;padding:18px 0 0;margin:0}
+.sidebar nav li{margin:8px 0}
+.sidebar nav a{display:block;color:rgba(255,255,255,0.95);text-decoration:none;padding:8px;border-radius:8px}
+.sidebar nav a.active, .sidebar nav a:hover{background:rgba(255,255,255,0.06)}
+.sidebar-footer{font-size:13px;color:rgba(255,255,255,0.8);padding-top:12px}
+
+/* MAIN */
+.main{margin-left:var(--sidebar-width);flex:1;padding:16px 20px 60px;min-height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.icon-btn{font-size:18px;border:none;background:transparent;cursor:pointer;padding:8px}
+.content-area{min-height:60vh}
+.section{background:var(--card);padding:16px;border-radius:10px;margin-bottom:14px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+.cards{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.card{flex:1;min-width:160px;padding:14px;border-radius:10px;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:0 4px 10px rgba(2,6,23,0.04)}
+.mini-form{display:grid;gap:8px;max-width:720px}
+.comments-list,.orders-list{margin-top:12px}
+.comment, .order {
+  background:linear-gradient(180deg,#fff,#fbfdff);padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #eef2f7;
+}
+.footer{text-align:center;margin-top:20px;color:var(--muted);font-size:13px;padding:8px}
+
+/* hidden utility */
+.hidden{display:none}
+
+/* responsive */
+@media (max-width:900px){
+  .sidebar{position:fixed;transform:translateX(-100%);width:260px}
+  .main{margin-left:0}
+  .sidebar.open{transform:translateX(0)}
+  .auth-screen{padding:12px}
+}
+
+/* small animations */
+a, button {transition:transform .12s ease, box-shadow .12s ease}
+a:active, button:active {transform:translateY(1px)}

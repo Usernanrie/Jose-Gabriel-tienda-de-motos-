@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Tienda - Full Motos Bolivia</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/styleTienda.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../imagenes/logo.png" alt="Full Motos Bolivia">
+        </div>
+
+        <nav>
+                      <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="configuracion.html">Configuración</a></li>
+                <li><a href="producto.html">Producto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>  </nav>
+    </aside>
+
+  <main class="main-content">
+    <h1>Tienda</h1>
+
+    <div class="filtros" style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
+      <select id="selectCat">
+        <option value="todos">Todas las categorías</option>
+      </select>
+      <input id="search" placeholder="Buscar producto..." style="flex:1;padding:8px;border-radius:6px;border:1px solid #ccc;">
+    </div>
+
+    <div id="productosGrid" class="productos-grid"></div>
+
+    <aside class="carrito" style="margin-top:18px;">
+      <h2>Carrito</h2>
+      <ul id="listaCarrito"></ul>
+      <p>Total: Bs <span id="totalCarrito">0</span></p>
+      <a href="finalizar.html" class="btn">Finalizar compra</a>
+    </aside>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/cart.js"></script>
+  <script>
+    const catalogo = leerLS("catalogo") || [];
+    const productosGrid = document.getElementById("productosGrid");
+    const selectCat = document.getElementById("selectCat");
+    const search = document.getElementById("search");
+
+    // llenar select
+    const cats = Array.from(new Set(catalogo.map(p=>p.categoria)));
+    cats.forEach(c=> {
+      const opt = document.createElement("option"); opt.value=c; opt.textContent=c; selectCat.appendChild(opt);
+    });
+
+    function render(categoria="todos", texto=""){
+      productosGrid.innerHTML = "";
+      let lista = catalogo.slice();
+      if(categoria && categoria !== "todos") lista = lista.filter(p=>p.categoria === categoria);
+      if(texto) lista = lista.filter(p=>p.nombre.toLowerCase().includes(texto.toLowerCase()));
+      lista.forEach(p=>{
+        productosGrid.innerHTML += `
+          <div class="producto">
+            <img src="${p.imagen}" alt="${p.nombre}">
+            <h3>${p.nombre}</h3>
+            <p>Bs ${p.precio}</p>
+            <div style="display:flex;gap:8px;justify-content:center">
+              <button class="btn" onclick="agregarAlCarrito(${p.id})">🛒 Agregar</button>
+              <a class="btn" href="producto.html?id=${p.id}">Ver</a>
+            </div>
+          </div>
+        `;
+      });
+      window.actualizarCarrito && window.actualizarCarrito();
+    }
+
+    selectCat.addEventListener("change", ()=>render(selectCat.value, search.value));
+    search.addEventListener("input", ()=>render(selectCat.value, search.value));
+
+    // filtrar por query ?categoria=
+    const q = new URLSearchParams(window.location.search);
+    const catQ = q.get("categoria");
+    if(catQ) selectCat.value = decodeURIComponent(catQ);
+
+    document.addEventListener("DOMContentLoaded", ()=> render(selectCat.value, ""));
+  </script>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Admin • YVLEM</title>
+<link rel="stylesheet" href="../css/colores.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/admin.css">
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; }
+  .site-header { padding:1rem 2rem; background:#b7632d; color:#fff; }
+  .site-header .brand span { font-weight: normal; font-size:0.9rem; color:#fff; }
+  .admin-grid { display:flex; min-height:calc(100vh - 64px); }
+  .admin-side { width:220px; background:#fff; border-right:1px solid #ddd; padding:1rem; position:sticky; top:0; height:100vh; box-sizing:border-box; }
+  .admin-side nav a { display:block; padding:0.5rem 0; color:#b7632d; text-decoration:none; font-weight:bold; }
+  .admin-side nav a:hover { color:#963f1f; }
+  .admin-main { flex:1; padding:2rem; overflow:auto; }
+  .panel-section { background:#fff; padding:1rem; margin-bottom:1.5rem; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
+  .panel-section h2 { margin-bottom:0.5rem; }
+  #addSampleProducts { margin-top:1rem; cursor:pointer; }
+  @media(max-width:900px){
+    .admin-grid { flex-direction:column; }
+    .admin-side { width:100%; height:auto; position:relative; border-right:none; border-bottom:1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+  <header class="site-header container">
+    <a class="brand" href="inicio.html">YVLEM <span>admin</span></a>
+  </header>
+
+  <main class="container admin-grid">
+    <aside class="admin-side">
+      <nav>
+        <a href="#sol">Solicitudes</a>
+        <a href="#users">Usuarios</a>
+        <a href="#products">Productos</a>
+        <a href="#orders">Pedidos</a>
+      </nav>
+    </aside>
+
+    <section class="admin-main">
+      <h1>Panel de administración</h1>
+
+      <section id="sol" class="panel-section">
+        <h2>Solicitudes</h2>
+        <div id="solList"><p class="muted">Cargando...</p></div>
+      </section>
+
+      <section id="users" class="panel-section">
+        <h2>Usuarios</h2>
+        <div id="usersList"><p class="muted">Cargando...</p></div>
+      </section>
+
+      <section id="products" class="panel-section">
+        <h2>Productos</h2>
+        <div id="productsList"><p class="muted">Cargando...</p></div>
+        <button id="addSampleProducts" class="btn primary">Agregar catálogo de ejemplo</button>
+      </section>
+
+      <section id="orders" class="panel-section">
+        <h2>Pedidos</h2>
+        <div id="ordersList"><p class="muted">Cargando...</p></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    // Validación de admin
+    if(!isAuthenticated() || !getUser() || getUser().role !== 'admin'){
+      alert('Acceso denegado. Redirigiendo al inicio de sesión.');
+      location.href = '../index.html';
+    }
+  </script>
+</body>
+</html>

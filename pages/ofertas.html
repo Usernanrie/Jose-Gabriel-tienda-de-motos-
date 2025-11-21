@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ofertas - Full Motos Bolivia</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/styleTienda.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../imagenes/logo.png" alt="Full Motos Bolivia">
+        </div>
+
+        <nav>
+                      <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="configuracion.html">Configuración</a></li>
+                <li><a href="producto.html">Producto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>  </nav>
+    </aside>
+
+  <main class="main-content">
+    <h1>Ofertas</h1>
+    <div id="ofertasGrid" class="productos-grid"></div>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script>
+    const catalogo = leerLS("catalogo") || [];
+    const ofertas = catalogo.filter(p=>p.precio <= 50); // criterio demo
+    const g = document.getElementById("ofertasGrid");
+    ofertas.forEach(p=>{
+      g.innerHTML += `
+        <div class="producto">
+          <img src="${p.imagen}" alt="${p.nombre}">
+          <h3>${p.nombre}</h3>
+          <p>Bs ${p.precio}</p>
+          <div style="display:flex;gap:8px;justify-content:center">
+            <button class="btn" onclick="agregarAlCarrito(${p.id})">🛒 Agregar</button>
+            <a class="btn" href="producto.html?id=${p.id}">Ver</a>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

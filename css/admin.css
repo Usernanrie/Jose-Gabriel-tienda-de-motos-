@@ -1,0 +1,5 @@
+.admin-grid{display:flex;gap:1.5rem;padding:1rem}
+.admin-side{width:220px;background:var(--white);padding:1rem;border-radius:12px}
+.admin-main{flex:1;background:var(--white);padding:1rem;border-radius:12px}
+.panel-section{margin-bottom:1rem}
+.sol-item, .user-item, .prod-item, .order-item{padding:.6rem;border-bottom:1px solid #eee}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Solicitudes • YVLEM</title>
+<link rel="stylesheet" href="../css/colores.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/formularios.css">
+<link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+  <main class="container">
+    <section class="request-card anim-fade-up">
+      <h1>Solicitudes</h1>
+      <p class="muted small">Envíanos tus solicitudes o consultas, te responderemos pronto.</p>
+      <form id="reqForm">
+        <div class="field">
+          <label for="reqName">Nombre</label>
+          <input id="reqName" required placeholder="Tu nombre">
+        </div>
+        <div class="field">
+          <label for="reqEmail">Email</label>
+          <input id="reqEmail" type="email" required placeholder="tu@correo.com">
+        </div>
+        <div class="field">
+          <label for="reqDetail">Detalle</label>
+          <textarea id="reqDetail" required minlength="10" placeholder="Describe tu solicitud"></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Enviar solicitud</button>
+        </div>
+      </form>
+      <div id="reqFeedback" class="muted small" aria-live="polite"></div>
+    </section>
+  </main>
+
+<script src="../js/storage.js"></script>
+<script>
+document.getElementById('reqForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const feedback = document.getElementById('reqFeedback');
+  const data = {
+    nombre: reqName.value.trim(),
+    email: reqEmail.value.trim(),
+    detalle: reqDetail.value.trim(),
+    fecha: new Date().toISOString()
+  };
+
+  // Validaciones
+  if(!/^\S+@\S+\.\S+$/.test(data.email)){
+    feedback.textContent = 'Email inválido.';
+    return;
+  }
+  if(data.detalle.length < 10){
+    feedback.textContent = 'El detalle debe tener al menos 10 caracteres.';
+    return;
+  }
+
+  // Guardar solicitud
+  saveSolicitud(data);
+  feedback.textContent = 'Solicitud enviada. Gracias por contactarnos.';
+  this.reset();
+});
+</script>
+</body>
+</html>

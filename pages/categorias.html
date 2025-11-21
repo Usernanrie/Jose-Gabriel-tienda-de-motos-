@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Categorías - Full Motos Bolivia</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/styleTienda.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="../imagenes/logo.png" alt="Full Motos Bolivia">
+        </div>
+
+        <nav>
+                      <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="configuracion.html">Configuración</a></li>
+                <li><a href="producto.html">Producto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>  </nav>
+    </aside>
+
+  <main class="main-content">
+    <h1>Categorías</h1>
+    <div id="categoriasGrid" class="categorias-grid"></div>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script>
+    const categorias = [
+      {nombre:"Cascos", descripcion:"Protege tu cabeza con cascos de diferentes estilos.", imagen:"../imagenes/cascos/casco1.jpg"},
+      {nombre:"Aceites y lubricantes", descripcion:"Lubricantes y aceites para mantener el motor.", imagen:"../imagenes/aceites/aceite1.jpg"},
+      {nombre:"Accesorios", descripcion:"Maletas, soportes, luces y más.", imagen:"../imagenes/accesorios/accesorio1.jpg"},
+      {nombre:"Ropa de moto", descripcion:"Chaquetas, guantes y botas con protecciones.", imagen:"../imagenes/ropa/ropa1.jpg"},
+      {nombre:"Neumáticos", descripcion:"Neumáticos para ciudad, pista y off-road.", imagen:"../imagenes/neumaticos/neumatico1.jpg"},
+      {nombre:"Baterías", descripcion:"Baterías selladas y libres de mantenimiento.", imagen:"../imagenes/baterias/bateria1.jpg"},
+      {nombre:"Herramientas", descripcion:"Kits y herramientas para mantenimiento.", imagen:"../imagenes/herramientas/herramienta1.jpg"},
+      {nombre:"Otros", descripcion:"Accesorios y repuestos varios.", imagen:"../imagenes/otros/otros1.jpg"}
+    ];
+
+    const grid = document.getElementById("categoriasGrid");
+    categorias.forEach(cat=>{
+      const div = document.createElement("div");
+      div.className = "categoria-card";
+      div.innerHTML = `
+        <img src="${cat.imagen}" alt="${cat.nombre}">
+        <h3>${cat.nombre}</h3>
+        <p>${cat.descripcion}</p>
+        <a class="btn" href="tienda.html?categoria=${encodeURIComponent(cat.nombre)}">Ver productos</a>
+      `;
+      grid.appendChild(div);
+    });
+  </script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

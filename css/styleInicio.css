@@ -1,0 +1,67 @@
+/* Layout de Nav y Hero y productos */
+.nav{
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+  position:sticky;top:0;z-index:50;backdrop-filter: blur(4px);
+  border-bottom:1px solid rgba(0,0,0,0.03);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;max-width:1100px;margin:0 auto}
+.menu a{margin:0 .7rem;color:var(--muted);font-weight:600}
+.menu .btn-login{background:transparent;border:1px solid var(--marron);padding:.4rem .6rem;border-radius:6px;color:var(--marron)}
+
+.menu-toggle{display:none;background:transparent;border:0;font-size:1.2rem}
+
+/* Hero */
+.hero{padding:3rem 0}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.hero-copy h1{font-family:"Poppins";font-size:2.4rem;margin:0;line-height:1}
+.hero-subtitle{display:block;font-size:1rem;color:var(--marron);margin-top:.3rem}
+.lead{color:var(--muted);margin:1rem 0 1.6rem;font-size:1.05rem}
+.hero-media img{border-radius:14px;box-shadow:0 8px 30px rgba(12,20,16,0.06);width:100%;height:auto;object-fit:cover}
+
+/* Productos grid */
+.productos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(9,10,10,0.04);border:1px solid rgba(0,0,0,0.03)}
+.product-card img{height:210px;object-fit:cover}
+.card-body{padding:1rem}
+.card-body h3{margin:.2rem 0;font-size:1rem}
+.price{color:var(--marron);font-weight:700}
+
+/* Sobre - two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.sobre-media img{border-radius:12px}
+
+/* Testimonios */
+.test-grid{display:flex;gap:1rem;flex-wrap:wrap}
+.test-card{background:var(--white);padding:1rem;border-radius:10px;flex:1;min-width:220px;box-shadow:0 6px 18px rgba(0,0,0,0.03);display:flex;flex-direction:column;align-items:flex-start}
+.test-card .avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;margin-bottom:.6rem}
+
+/* Contacto / formulario */
+.form{max-width:640px;background:var(--white);padding:1rem 1.2rem;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.04)}
+.form-row{margin-bottom:.8rem;display:flex;flex-direction:column}
+.form-row label{font-weight:600;margin-bottom:.25rem;font-size:.9rem}
+.form-row input, .form-row textarea{padding:.6rem;border-radius:8px;border:1px solid rgba(0,0,0,0.08);font-size:1rem}
+.actions{display:flex;gap:.6rem;align-items:center}
+.form-feedback{margin-top:.6rem;font-weight:600}
+.form-feedback.error{color:#B00020}
+.form-feedback.success{color:var(--marron)}
+
+/* Footer */
+.site-footer{background:var(--white);padding:2rem 0;border-top:1px solid rgba(0,0,0,0.03);margin-top:2rem}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.copyright{text-align:center;padding:1rem 0;color:var(--muted);font-size:.9rem}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .productos-grid{grid-template-columns:repeat(2,1fr)}
+  .two-col{grid-template-columns:1fr}
+  .menu-toggle{display:block}
+  .menu{display:none}
+  .menu.open{display:flex;flex-direction:column;gap:.5rem}
+}
+
+@media (max-width:600px){
+  .productos-grid{grid-template-columns:1fr}
+  .nav-inner{padding:0.6rem 1rem}
+  .hero-copy h1{font-size:1.6rem}
+}

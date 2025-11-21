@@ -1,0 +1,38 @@
+/* base.css - reset y layout */
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#222;margin:0}
+a{color:inherit;text-decoration:none}
+.main-content{margin-left:260px;padding:22px}
+.sidebar{position:fixed;left:0;top:0;width:240px;height:100%;background:#111;color:#fff;padding:18px}
+.sidebar .sidebar-logo img{width:140px;display:block;margin:0 auto 12px}
+.sidebar nav ul{list-style:none;padding:0;margin:0}
+.sidebar nav ul li{margin:8px 0}
+.sidebar nav ul li a{display:block;padding:8px 10px;border-radius:6px}
+.sidebar nav ul li a.active, .sidebar nav ul li a:hover{background:#ff6600}
+.btn{background:#ff6600;color:#fff;padding:8px 12px;border-radius:6px;border:none;cursor:pointer}
+.mensaje{margin-top:8px;font-weight:600}
+.mensaje.error{color:#cc0000}
+.mensaje.success{color:#28a745}
+.auth-container{width:360px;margin:80px auto;padding:24px;background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.08);text-align:center}
+.auth-logo{width:110px;margin-bottom:10px}
+.nosotros-card {
+    background: rgba(0,0,0,0.55);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.nosotros-card h2 {
+    margin-bottom: 10px;
+    color: #ffdd57;
+}
+
+.nosotros-card ul {
+    margin-left: 20px;
+}
+
+.main-content h1 {
+    margin-bottom: 20px;
+}

@@ -1,0 +1,49 @@
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+/* Body */
+body {
+    background-color: #f5f7fa;
+    color: #111;
+}
+
+/* Formularios */
+.login-container, .registro-container {
+    width: 350px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Botón */
+button {
+    width: 100%;
+    background-color: #0057D9;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+button:hover { background-color: #0041a3; }
+
+/* Mensajes */
+.error { color: red; margin-top: 10px; }
+.ok { color: green; margin-top: 10px; }
+
+/* Enlaces */
+a { display: block; text-align: center; margin-top: 15px; color: #0057D9; text-decoration: none; }
+a:hover { text-decoration: underline; }

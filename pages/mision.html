@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Misión • YVLEM</title>
+  <link rel="stylesheet" href="../css/colores.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/content.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="inicio.html">YVLEM <span>skincare</span></a>
+        <nav>
+                      <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+                <li><a href="tienda.html">Tienda</a></li>
+                <li><a href="categorias.html">Categorías</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="configuracion.html">Configuración</a></li>
+                <li><a href="producto.html">Producto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="#" id="logoutBtn">Cerrar sesión</a></li>
+            </ul>  </nav>
+      <div class="nav-actions">
+        <button id="btnLogout" class="btn ghost">Cerrar sesión</button>
+      </div>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="container">
+    <section class="content anim-fade-up">
+      <h1>Misión y Visión</h1>
+      <h3>Misión</h3>
+      <p>Promover el bienestar de la piel a través de productos artesanales bolivianos, apoyando economías locales y prácticas sostenibles.</p>
+      <h3>Visión</h3>
+      <p>Ser la marca de referencia en skincare artesanal en Bolivia y la región andina.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>YVLEM</strong><br>Skincare artesanal • Bolivia
+      </div>
+      <div>
+        <nav>
+          <a href="nosotros.html">Nosotros</a><br>
+          <a href="contacto.html">Contacto</a><br>
+          <a href="mision.html">Misión</a>
+        </nav>
+      </div>
+      <div>
+        <strong>Contacto</strong><br>
+        melvychuquimia@gmail.com<br>+591 69797619
+      </div>
+    </div>
+    <div class="copyright">© <span id="anioMision"></span> YVLEM</div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="../js/auth.js"></script>
+  <script>
+    document.getElementById('anioMision').textContent = new Date().getFullYear();
+
+    if(!isAuthenticated()){ location.href = '../index.html'; }
+
+    document.getElementById('btnLogout').addEventListener('click', function(){
+      logout();
+      location.href = '../index.html';
+    });
+  </script>
+</body>
+</html>
